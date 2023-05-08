@@ -7,7 +7,10 @@ class Animal:
     def move(self, direction):
         print(f'moving to {direction}. <<<NOT IMPLEMENT YET>>>')
 
-    def bredd(self, x ,y):
+    def breed(self, x ,y):
         print(f'breed to {x}, {y}. <<< NOT IMPLEMENTED >>>')
         # return Animal(x, y)
 
+class Zebra(Animal):
+    def move(self, occupancy_grid):
+        print('<<< NOT IMPLEMENTED>>>')
