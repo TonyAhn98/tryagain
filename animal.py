@@ -8,4 +8,6 @@ class Animal:
         print(f'moving to {direction}. <<<NOT IMPLEMENT YET>>>')
 
     def bredd(self, x ,y):
-        return Animal(x, y)
+        print(f'breed to {x}, {y}. <<< NOT IMPLEMENTED >>>')
+        # return Animal(x, y)
+
