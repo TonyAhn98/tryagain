@@ -22,8 +22,7 @@ while True:
 
     print("\nPress Enter to move the icon to the right...", end="")
     sys.stdout.flush()
-    input()
-    icon_position += 1
-
-
-
+    if input() == "":
+        icon_position += 1
+    else:
+        break
