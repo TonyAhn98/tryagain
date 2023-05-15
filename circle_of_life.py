@@ -1,24 +1,40 @@
-from animal import Animal
-
-def print_TODO(todo):
-    print(f'<<<NOT IMPLEMENTED: {todo} >>>')
+from animal import Zebra, Lion
+from utils import print_TODO
 
 class CircleOfLife:
     def __init__(self, world_size, num_zebras, num_lions):
-        self.occupancy = [[False for _ in range(world_size)]
-                          for _ in range(world_size)]
+        self.world_size = world_size
+        self.reset_grid()
         print_TODO('get random empty coordinates')
-        self.zebras = [Animal(0, 0) for _ in range(num_zebras)]
-        self.lions = [Animal(0, 0) for _ in range(num_lions)]
+        self.zebras = [Zebra(0, 0) for _ in range(num_zebras)]
+        self.lions = [Lion(0, 0) for _ in range(num_lions)]
         self.timestep = 0
+        self.grid()
+
         print('Welcome to AIE Safari!')
         print(f'\tworld size = {world_size}')
         print(f'\tnumber of zebras = {len(self.zebras)}')
         print(f'\tnumber of lions = {len(self.lions)}')
 
+    def reset_grid(self):
+        self.grid = [['.' for _ in range(self.world_size)]
+                    for _ in range (self.world_size)]
+
+    def grid(self):
+        self.grid = [[' ' for _ in range(20)] for _ in range(20)]
+
     def display(self):
         print(f'Clock: {self.timestep}')
-        print_TODO('display()')
+        top_coord_str = ' '.join([f'{coord}' for coord in range(len(self.grid))])
+        print('  ' + top_coord_str)
+
+        self.reset_grid()
+        for animal in self.zebras:
+            self.grid[animal.y][animal.x] = 'Z'
+        for animal in self.lions:
+            self.grid[animal.y][animal.x] = 'L'
+        for row in self.grid:
+            print(' '.join(str(cell) for cell in row))
         key = input('enter [q] to quit:')
         if key == 'q':
             exit()
@@ -26,15 +42,9 @@ class CircleOfLife:
     def step_move(self):
         print_TODO('step_move()')
         for zebra in self.zebras:
-            print_TODO('get empty neighbor')
-            direction = 'left'
-            zebra.move(direction)
+            zebra.move(self.grid)
         for lion in self.lions:
-            print_TODO('get neighboring zebra')
-            print_TODO('move to zebra if found, else move to empty')
-            print_TODO('get empty neighbor')
-            direction = 'left'
-            lion.move(direction)
+            lion.move(self.grid)
 
     def step_breed(self):
         print_TODO('step_breed()')
@@ -51,9 +61,7 @@ class CircleOfLife:
             self.display()
             self.step_breed()
             self.display()
+    
 if __name__ == '__main__':
     safari = CircleOfLife(5, 5, 2)
-    #safari.display()
-    #safari.step_move()
-    #safari.step_breed()
     safari.run(2)
