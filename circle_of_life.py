@@ -9,7 +9,7 @@ class CircleOfLife:
         self.zebras = [Zebra(0, 0) for _ in range(num_zebras)]
         self.lions = [Lion(0, 0) for _ in range(num_lions)]
         self.timestep = 0
-        self.grid()
+        self.initialize_grid()
 
         print('Welcome to AIE Safari!')
         print(f'\tworld size = {world_size}')
@@ -18,7 +18,10 @@ class CircleOfLife:
 
     def reset_grid(self):
         self.grid = [['.' for _ in range(self.world_size)]
-                    for _ in range (self.world_size)]
+                     for _ in range(self.world_size)]
+
+    def initialize_grid(self):
+        self.grid = [[' ' for _ in range(20)] for _ in range(20)]
 
     def grid(self):
         self.grid = [[' ' for _ in range(20)] for _ in range(20)]
