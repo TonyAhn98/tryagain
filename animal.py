@@ -82,6 +82,3 @@ class grid:
     def display(self):
         for row in self.grid:
             print(' '.join(row))
-
-grid_obj = grid()
-grid_obj.display()

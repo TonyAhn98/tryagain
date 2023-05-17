@@ -21,14 +21,12 @@ class CircleOfLife:
                      for _ in range(self.world_size)]
 
     def initialize_grid(self):
-        self.grid = [[' ' for _ in range(20)] for _ in range(20)]
-
-    def grid(self):
-        self.grid = [[' ' for _ in range(20)] for _ in range(20)]
+        self.grid = [[' ' for _ in range(self.world_size)]
+                     for _ in range(self.world_size)]
 
     def display(self):
         print(f'Clock: {self.timestep}')
-        top_coord_str = ' '.join([f'{coord}' for coord in range(len(self.grid))])
+        top_coord_str = ''.join([f'{coord:3}' for coord in range(len(self.grid))])
         print('  ' + top_coord_str)
 
         self.reset_grid()
@@ -36,8 +34,8 @@ class CircleOfLife:
             self.grid[animal.y][animal.x] = 'Z'
         for animal in self.lions:
             self.grid[animal.y][animal.x] = 'L'
-        for row in self.grid:
-            print(' '.join(str(cell) for cell in row))
+        for i,row in enumerate(self.grid):
+            print(f'{i:3}',''.join(f'{cell:3}' for cell in row))
         key = input('enter [q] to quit:')
         if key == 'q':
             exit()
@@ -61,10 +59,9 @@ class CircleOfLife:
         for _ in range(num_timesteps):
             self.timestep += 1
             self.step_move()
-            self.display()
             self.step_breed()
             self.display()
-    
+
 if __name__ == '__main__':
-    safari = CircleOfLife(20, 20, 2)
-    safari.run(2)
+    safari = CircleOfLife(20, 10, 10)
+    safari.run(5)
