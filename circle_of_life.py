@@ -26,7 +26,7 @@ class CircleOfLife:
 
     def display(self):
         print(f'Clock: {self.timestep}')
-        top_coord_str = ''.join([f'{coord:3}' for coord in range(len(self.grid))])
+        top_coord_str = ''.join([f'{coord+1:3}' for coord in range(len(self.grid))])
         print('  ' + top_coord_str)
 
         self.reset_grid()
@@ -35,7 +35,7 @@ class CircleOfLife:
         for animal in self.lions:
             self.grid[animal.y][animal.x] = 'L'
         for i,row in enumerate(self.grid):
-            print(f'{i:3}',''.join(f'{cell:3}' for cell in row))
+            print(f'{i+1:3}',''.join(f'{cell:3}' for cell in row))
         key = input('enter [q] to quit:')
         if key == 'q':
             exit()
