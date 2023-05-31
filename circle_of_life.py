@@ -1,6 +1,7 @@
 import random
 from animal import Zebra, Lion, Empty
-from utils import print_TODO
+import os
+#from main import safari
 
 class CircleOfLife:
     def __init__(self, world_size, num_zebras, num_lions):
@@ -42,12 +43,16 @@ class CircleOfLife:
                      for _ in range(self.world_size)]
 
     def display(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(f'Clock: {self.timestep}')
         top_coord_str = ''.join([f'{coord+1:3}' for coord in range(len(self.grid))])
         print('  ' + top_coord_str)
         for row, line in enumerate(self.grid):
             buffer = [str(animal) for animal in line]
-            print(f'{row:3} ' + '  '.join(buffer))
+            print(f'{row+1:3} ' + '  '.join(buffer))
+        #num_zebras, num_lions = safari.count_animals()
+        #print(f"Number of zebras: {num_zebras}")
+        #print(f"Number of lions: {num_lions}")
         key = input('enter [q] to quit:')
         if key == 'q':
             exit()

@@ -1,5 +1,5 @@
-import sys
-import os
+#import sys
+#import os
 from argparse import ArgumentParser
 from circle_of_life import CircleOfLife
 
